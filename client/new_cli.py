@@ -84,12 +84,7 @@ def create_parser(prog_name):
     add_show_parser(subparsers, parent_parser)
     add_list_parser(subparsers, parent_parser)
 
-    add_generate_parser(subparsers, parent_parser)
-    add_load_parser(subparsers, parent_parser)
-    add_populate_parser(subparsers, parent_parser)
-    add_create_batch_parser(subparsers, parent_parser)
-    add_workload_parser(subparsers, parent_parser)
-
+    # When removing additional parsers, we can remove the calls, else they will throw not found
     return parser
 
 
@@ -138,7 +133,7 @@ def add_set_parser(subparsers, parent_parser):
 def do_set(args):
     name, value, receiver, wait = args.name, args.value, args.receiver, args.wait
     client = _get_client(args)
-    response = client.set(name, value, receiver, wait)
+    response = client.set(name, value, args.receiver, wait)
     print(response)
 
 
@@ -404,3 +399,6 @@ def main_wrapper():
     except:
         traceback.print_exc(file=sys.stderr)
         sys.exit(1)
+
+# Then this will call the main() function
+main_wrapper()

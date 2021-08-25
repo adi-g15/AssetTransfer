@@ -1,0 +1,4 @@
+#!/bin/sh
+# First run install-deps.sh
+# This is shell syntax to pass all args as it is
+python3 new_cli.py $@

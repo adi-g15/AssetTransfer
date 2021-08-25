@@ -22,7 +22,7 @@ services:
     container_name: sawtooth-settings-tp-default
     depends_on:
       - validator
-    entrypoint: settings-tp -vv -C tcp://validator:4004
+    entrypoint: settings-tp -C tcp://validator:4004
 
   validator:
     image: hyperledger/sawtooth-validator:chime
@@ -42,7 +42,7 @@ services:
           sawtooth.consensus.algorithm.version=0.1 \
           -o config.batch && \
         sawadm genesis config-genesis.batch config.batch && \
-        sawtooth-validator -vv \
+        sawtooth-validator -v \
           --endpoint tcp://validator:8800 \
           --bind component:tcp://eth0:4004 \
           --bind network:tcp://eth0:8800 \
