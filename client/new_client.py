@@ -6,7 +6,8 @@ import requests
 import yaml
 import cbor
 
-from AssetTransfer.client.exceptions import IntkeyClientException
+# In python, the module name can simply be the file name in current directory "AssetTransfer.client" will try: first to find if something named AssetTransfer is installed, jo ki nahi hai, and then in current folder it will try to find this AssetTransfer folder, wo bhi nahi hai, we don't need AssetTransfer.client, bcz the file exceptions.py is in same dir
+from exceptions import IntkeyClientException
 
 from sawtooth_signing import create_context
 from sawtooth_signing import CryptoFactory
@@ -33,8 +34,9 @@ class IntkeyClient:
                     private_key_str = fd.read().strip()
                     fd.close()
             except OSError as err:
-                raise IntkeyClientException(
-                    'Failed to read private key: {}'.format(str(err))) from err
+                # Use a random key when not in a container
+                context = create_context('secp256k1')
+                private_key_str = context.new_random_private_key().as_hex()
 
             try:
                 private_key = Secp256k1PrivateKey.from_hex(private_key_str)
@@ -95,7 +97,7 @@ class IntkeyClient:
             raise IntkeyClientException(err) from err
 
     def _get_prefix(self):
-        return _sha512('intkey'.encode('utf-8'))[0:6]
+        return _sha512('modified_intkey'.encode('utf-8'))[0:6]
 
     def _get_address(self, name):
         prefix = self._get_prefix()
@@ -148,7 +150,7 @@ class IntkeyClient:
 
         header = TransactionHeader(
             signer_public_key=self._signer.get_public_key().as_hex(),
-            family_name="intkey",
+            family_name="modified_intkey",
             family_version="1.0",
             inputs=[address],
             outputs=[address],
