@@ -1,0 +1,34 @@
+Lightning Memory Map Database (LMDB)
+
+-Transactional Database : A transactional database is a DBMS that can reverse or scale back a database transaction or activity if it isn’t performed correctly.
+
+-ACID Properties :
+
+1. Atomicity - The entire transaction takes place at once or doesn't happen at all
+2. Consistency - The database must be consistent before and after the transaction
+3. Isolation - Multiple transactions occur independently without interference
+4. Durability - The changes of a successful transaction occurs even if the system failure occurs
+ 
+-Named Database : A database with a logical name that allows users to identify it without knowing its location. Max database size must be specified.
+
+-Multiversion concurrency control(MVCC) : Multiversion concurrency control, is a concurrency control method commonly used by database management systems to provide concurrent access to the database and in programming languages to implement transactional memory. (read-write lock) (readers never block)
+
+-Crash proof structure
+
+-Highly optimized and extremely compact
+
+-Runs on most modern operating systems
+
+-Concurrency Support : 
+
+1. multi-process and multi-threading
+2. single writer and n readers
+3. No deadlocks (because only a single writer)
+
+-Supports nested transactions and batched writes
+
+-Full isolation eith MVCC - Serializable
+
+-Copy on Write (COW)
+
+-Uses single level store
