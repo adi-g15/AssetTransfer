@@ -1,4 +1,4 @@
-Development of a universal yet flexible consensus algorithm supporting the participation of IOT and mobile devices. 
+**Development of a universal yet flexible consensus algorithm supporting the participation of IOT and mobile devices** 
 
 This repository contains an application which has the ability to transfer assets from one user to another. It works on the platform Hyperledger Sawtooth and is based on an example application 'Intkey' present in the Sawtooth core repository. 
 
