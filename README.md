@@ -1,2 +1,1 @@
-# AssetTransfer
-A simple application for transfer of assets from one user to another
+Development of a universal yet flexible consensus algorithm supporting the participation of IOT and mobile devices.
